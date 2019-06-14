@@ -1,4 +1,6 @@
-# 班级管理系统
+<div align="center"><img src="https://raw.githubusercontent.com/LeoB-O/ClassManagement/master/docs/util.png" alt="Icon Badge" width="100%"></div>
+
+<h1 align="center">ClassBegins</h1>
 
 ## 主要功能
 
