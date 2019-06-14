@@ -1,0 +1,32 @@
+{
+  "name": "classmanagement-",
+  "version": "0.0.1",
+  "description": "大学班级管理，目前主要功能是提交作业😄",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --open --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeoB-O/ClassManagement.git"
+  },
+  "keywords": [
+    "class",
+    "management"
+  ],
+  "author": "LeoB_O",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeoB-O/ClassManagement/issues"
+  },
+  "homepage": "https://github.com/LeoB-O/ClassManagement#readme",
+  "devDependencies": {
+    "css-loader": "^3.0.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.34.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-dev-server": "^3.7.1"
+  }
+}
