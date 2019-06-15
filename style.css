@@ -2,3 +2,11 @@
     color: red;
     background: yellow;
 }
+
+body {
+    font-family: PingFangSC-Light, sans-serif;
+}
+
+h1 {
+    font-weight: normal;
+}
