@@ -1,6 +1,6 @@
-<h1 align="center" style="margin-bottom: -10%;font-size:72px;z-index:1;">Claaaaaaas</h1>
+<h1 align="center" style="font-size:72px">Homeworkability</h1>
 
-<div align="center"><img src="https://raw.githubusercontent.com/LeoB-O/ClassManagement/master/docs/util.png" alt="Icon Badge" width="100%"></div>
+<div align="center"><img src="https://raw.githubusercontent.com/LeoB-O/ClassManagement/master/docs/util.jpeg" alt="Icon Badge" width="100%"></div>
 
 
 ## 主要功能
