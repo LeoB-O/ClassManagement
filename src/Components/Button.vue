@@ -1,5 +1,5 @@
 <template>
-    <button>
+    <button @click="$emit('click')">
         <slot>提交</slot>
     </button>
     
@@ -12,7 +12,7 @@ export default {
         }
     },
     created() {
-        this.innerLabelWidth = this.$parent.$props.labelWidth;
+        this.innerLabelWidth = this.$parent.$props && this.$parent.$props.labelWidth || 0;
     }
 }
 </script>
@@ -24,6 +24,9 @@ export default {
         font-size: 18px;
         background: #38A2FF;
         color: white;
-        border: #38A2FF solid 1px
+        border: #38A2FF solid 1px;
+    }
+    button:hover {
+        cursor: pointer;
     }
 </style>

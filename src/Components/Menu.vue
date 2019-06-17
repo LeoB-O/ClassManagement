@@ -1,6 +1,6 @@
 <template>
     <div class="menu">
-        <MenuItem v-for="route in routes" :key="route.path" :name="route.meta.name" :children="route.children"></MenuItem>
+        <MenuItem v-for="route in routesShouldRender" :key="route.path" :name="route.meta.name" :children="route.children" :path="route.path"></MenuItem>
     </div>
 </template>
 <script>
@@ -11,11 +11,26 @@ export default {
     },
     data() {
         return {
-            routes: this.$router.options.routes
+            routes: JSON.parse(JSON.stringify(this.$router.options.routes))
         }
     },
     created() {
-        console.log(this.routes[0].children)
+        console.log(this.$route);
+        let temp = [];
+        for(let i=0;i<this.routes.length;i++) {
+            if(!this.routes[i].meta || this.routes[i].meta.hide) {
+                temp = temp.concat(this.routes.splice(i, 1)[0].children);
+            }
+        }
+        this.routes.unshift(...temp);
+        for(let route of this.routes) {
+            console.log(route.meta);
+        }
+    },
+    computed: {
+        routesShouldRender() {
+            return this.routes.filter(v=>!!v.meta&&!v.meta.hide);
+        }
     }
 }
 </script>

@@ -7,7 +7,7 @@
                 <div class="info">
                     <div>姓名: 刘波波</div>
                     <div>学号: 3160608005</div>
-                    <div><a href="http://www.baidu.com">注销</a></div>
+                    <div><router-link to="/login">注销</router-link></div>
                 </div>
             </div>
         </div>
@@ -41,6 +41,7 @@ export default {
     transform: scaleY(0);
     transform-origin: top;
     transition: transform 0.5s ease-in-out;
+    background: white;
 }
 .info:hover {
     display: block;

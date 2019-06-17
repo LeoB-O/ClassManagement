@@ -5,7 +5,7 @@
         <Form labelWidth="80px">
             <Input label="学号" placeholder="学号"/>
             <Input label="密码" placeholder="密码" type="password"/>
-            <Button class="center"/>
+            <Button class="center" @click="handleClick"/>
         </Form>
     </div>
 </template>
@@ -18,6 +18,11 @@ export default {
         Form,
         Input,
         Button
+    },
+    methods: {
+        handleClick() {
+            this.$router.push("/");
+        }
     }
 }
 </script>

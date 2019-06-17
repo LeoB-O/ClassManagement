@@ -7,7 +7,7 @@
           <div class="homework-title">{{homework.title}}</div>
           <div class="homework-deadline">截止日期：{{formatTime(homework.deadline)}}</div>
           <div class="homework-content">{{homework.content}}</div>
-          <Button>去交作业</Button>
+          <Button @click="handleClick(homework.id)">去交作业</Button>
         </div>
       </div>
     </div>
@@ -34,6 +34,7 @@ export default {
       heads: ["column1", "column2", "column3"],
       homeworks: [
         {
+          id: "1001",
           title: "编译原理第一次作业",
           class: "编译原理",
           date: new Date(),
@@ -42,6 +43,7 @@ export default {
           content: ''
         },
         {
+          id: "1002",
           title: "编译原理第二次作业",
           class: "编译原理",
           date: new Date(),
@@ -50,6 +52,7 @@ export default {
           content: ''
         },
         {
+          id: "1003",
           title: "编译原理第三次作业",
           class: "编译原理",
           date: new Date(),
@@ -81,14 +84,16 @@ export default {
       let minute = date.getMinutes();
       let second = date.getSeconds();
       return year+'-'+month+'-'+ddate+' '+hour+':'+minute+':'+second;
+    },
+    handleClick(id) {
+      console.log(id);
+      this.$router.push("/detail/"+id)
     }
   }
 };
 </script>
 <style scope>
-.container {
-  /* padding-left: 50px; */
-}
+/* .container {} */
 .homework {
   display: flex;
   width: 600px;

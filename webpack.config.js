@@ -38,6 +38,10 @@ const config = {
                 //     use: 'css-loader',
                 //     fallback: 'style-loader'
                 // })
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: 'file-loader'
             }
         ]
     },
