@@ -1,7 +1,7 @@
 <template>
     <div>
-        <label :style="{width: innerLabelWidth}">{{label}}:</label>
-        <input :placeholder="placeholder" :type="type">
+        <label :style="{width: innerLabelWidth, fontSize: fontSize}">{{label}}:</label>
+        <input :placeholder="placeholder" :type="type" :value="value" @input="$emit('input', $event.target.value)">
     </div>
 </template>
 <script>
@@ -10,7 +10,9 @@ export default {
         label: String,
         labelWidth: String,
         type: String,
-        placeholder: String
+        placeholder: String,
+        value: String,
+        fontSize: String,
     },
     data() {
         return {

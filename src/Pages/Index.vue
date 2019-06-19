@@ -86,7 +86,6 @@ export default {
       return year+'-'+month+'-'+ddate+' '+hour+':'+minute+':'+second;
     },
     handleClick(id) {
-      console.log(id);
       this.$router.push("/detail/"+id)
     }
   }

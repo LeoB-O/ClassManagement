@@ -27,7 +27,7 @@ const config = {
                         options: {
                           // you can specify a publicPath here
                           // by default it uses publicPath in webpackOptions.output
-                          publicPath: '../',
+                          publicPath: '',
                           hmr: process.env.NODE_ENV === 'development',
                         },
                     },
@@ -42,6 +42,10 @@ const config = {
             {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: 'file-loader'
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: ['file-loader']
             }
         ]
     },

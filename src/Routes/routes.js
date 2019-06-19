@@ -1,6 +1,9 @@
+import App from '../../app.vue';
 import Main from '../Pages/Main.vue';
 import Index from '../Pages/Index.vue';
-import Detail from '../Pages/Detail.vue'
+import Detail from '../Pages/Detail.vue';
+import Member from '../Pages/Member.vue';
+import Publish from '../Pages/Publish.vue';
 import Login from '../Pages/Login.vue';
 
 export default [
@@ -21,13 +24,16 @@ export default [
             {
                 path: '/admin',
                 meta: {name: '管理'},
+                component: App,
                 children: [
                     {
-                        path: '/admin',
-                        meta: {name: '权限管理'}
+                        path: '/admin/member',
+                        component: Member,
+                        meta: {name: '成员管理'}
                     },
                     {
                         path: '/admin/publish',
+                        component: Publish,
                         meta: {name: '发布作业'}
                     },
                     
