@@ -23,7 +23,7 @@ export default [
             },
             {
                 path: '/admin',
-                meta: {name: '管理'},
+                meta: {name: '管理', permission: 'admin'},
                 component: App,
                 children: [
                     {

@@ -5,8 +5,9 @@
             <div class="profile">
                 <img src="https://cn.vuejs.org/images/logo.png" width="50px"/>
                 <div class="info">
-                    <div>姓名: 刘波波</div>
-                    <div>学号: 3160608005</div>
+                    <div>姓名: {{name}}</div>
+                    <div>学号: {{username}}</div>
+                    <div>权限: {{permission}}</div>
                     <div><router-link to="/login">注销</router-link></div>
                 </div>
             </div>
@@ -14,8 +15,15 @@
     </div>
 </template>
 <script>
+import { mapState } from 'vuex';
 export default {
-    
+    computed: {
+        ...mapState({
+            name: state => state.account.name,
+            username: state => state.account.username,
+            permission: state => state.account.permission
+        })
+    }
 }
 </script>
 <style scoped>

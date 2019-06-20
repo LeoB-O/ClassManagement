@@ -5,6 +5,7 @@
 </template>
 <script>
 import MenuItem from './MenuItem.vue';
+import {hasPermission} from '../util/index.js';
 export default {
     components: {
         MenuItem
@@ -23,13 +24,10 @@ export default {
             }
         }
         this.routes.unshift(...temp);
-        for(let route of this.routes) {
-            console.log(route.meta);
-        }
     },
     computed: {
         routesShouldRender() {
-            return this.routes.filter(v=>!!v.meta&&!v.meta.hide);
+            return this.routes.filter(v=>!!v.meta&&!v.meta.hide&&hasPermission(this.$store.state.account.permission, v.meta.permission || ['admin', 'normal']));
         }
     }
 }

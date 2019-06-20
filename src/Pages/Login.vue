@@ -26,12 +26,14 @@ export default {
             password: "",
         }
     },
+    async created() {
+        await this.$store.dispatch('login', {});
+        this.$router.push(this.$route.query.redirect || '/');
+    },
     methods: {
         async handleClick() {
-            try {
-                let response = await axios.post('/login', {username: this.username, password: this.password});
-                this.$router.push("/");
-            } catch(e) {}
+            await this.$store.dispatch('login', {username: this.username, password: this.password});
+            this.$router.push(this.$route.query.redirect || '/');
         }
     }
 }
