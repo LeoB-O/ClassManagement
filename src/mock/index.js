@@ -1,6 +1,5 @@
 import Mock from 'mockjs';
 
-import login from './login.js';
 import homework from './homework.js';
 import account from './account.js';
 
@@ -20,7 +19,9 @@ function wrapper(func) {
     }
 }
 
-Mock.mock(/\/login/, wrapper(login.login));
+Mock.mock(/\/login/, wrapper(account.login));
+Mock.mock(/\/logout/, wrapper(account.logout));
+Mock.mock(/\/account\/info/, wrapper(account.getInfo));
+
 Mock.mock(/\/homeworks$/, wrapper(homework.getAll));
 Mock.mock(/\/homework\/id/, wrapper(homework.deleteById));
-Mock.mock(/\/account\/info/, wrapper(account.getInfo));

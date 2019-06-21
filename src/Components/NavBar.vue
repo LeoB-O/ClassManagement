@@ -8,7 +8,7 @@
                     <div>姓名: {{name}}</div>
                     <div>学号: {{username}}</div>
                     <div>权限: {{permission}}</div>
-                    <div><router-link to="/login">注销</router-link></div>
+                    <div @click="handleLogout">注销</div>
                 </div>
             </div>
         </div>
@@ -23,6 +23,12 @@ export default {
             username: state => state.account.username,
             permission: state => state.account.permission
         })
+    },
+    methods: {
+        async handleLogout() {
+            await this.$store.dispatch('logout');
+            this.$router.push('/login');
+        }
     }
 }
 </script>
@@ -50,6 +56,7 @@ export default {
     transform-origin: top;
     transition: transform 0.5s ease-in-out;
     background: white;
+    z-index: 1;
 }
 .info:hover {
     display: block;

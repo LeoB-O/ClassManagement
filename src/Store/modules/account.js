@@ -1,4 +1,4 @@
-import {login, getInfo} from '../../api/account.js';
+import {login, logout, getInfo} from '../../api/account.js';
 
 const state = {
     name: '',
@@ -26,6 +26,10 @@ const actions = {
         localStorage.setItem("hw", "123456");
         commit('login', response.data.data);
         return response;
+    },
+    async logout({commit, getters}) {
+        await logout();
+        commit('logout');
     }
 }
 
@@ -34,6 +38,12 @@ const mutations = {
         state.name = payload.name;
         state.username = payload.username;
         state.permission = payload.permission;
+    },
+    logout (state) {
+        state.name = '';
+        state.username = '';
+        state.permission = '';
+        localStorage.clear();
     }
 }
 
