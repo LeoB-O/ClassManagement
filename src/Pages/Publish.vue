@@ -22,6 +22,7 @@
     </div>
 </template>
 <script>
+import {addHomework} from '../api/homework.js';
 export default {
     data() {
         return {
@@ -40,7 +41,9 @@ export default {
         handleDelete(file) {
             this.homework.files.splice(this.homework.files.indexOf(file), 1);
         },
-        handleSubmit() {}
+        async handleSubmit() {
+            await addHomework(this.homework.homeworkName, this.homework.className, this.homework.deadline, '', '', this.homework.files);
+        }
     }
 }
 </script>

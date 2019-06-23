@@ -9,7 +9,7 @@ import store from './src/Store/index.js';
 
 import 'element-ui/lib/theme-chalk/index.css';
 import './style.css';
-import './src/mock/index.js';
+// import './src/mock/index.js';
 
 Vue.use(Router);
 Vue.use(Element);

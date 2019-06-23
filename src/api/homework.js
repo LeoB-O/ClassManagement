@@ -1,7 +1,7 @@
 import axios from '../util/axios.js';
 
-export function addHomework(homeworkName, className, deadline, files) {
-    return axios.post('/homework', {homeworkName: homeworkName, className: className, deadline: deadline, files: files});
+export function addHomework(title, className, deadline, picture, content, files) {
+    return axios.post('/admin/homework', {title: title, class: className, deadline: deadline, picture: picture, content: content, files: files});
 }
 
 export function getHomeworks() {
@@ -13,5 +13,7 @@ export function getHomeworkById(id) {
 }
 
 export function deleteHomeworkById(id) {
-    return axios.delete('/homework/id', {params: {id: id}});
+    return axios.delete('/admin/homework/id', {params: {id: id}});
 }
+
+export function uploadHomeworkFile() {}

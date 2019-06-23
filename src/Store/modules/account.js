@@ -3,7 +3,7 @@ import {login, logout, getInfo} from '../../api/account.js';
 const state = {
     name: '',
     username: '',
-    permission: '',
+    permission: [],
 }
 
 const getters = {
@@ -23,13 +23,13 @@ const actions = {
         if (!username || !password) return;
     
         let response = await login(username, password);
-        localStorage.setItem("hw", "123456");
+        localStorage.setItem("hw", response.data.data.token);
         commit('login', response.data.data);
         return response;
     },
     async logout({commit, getters}) {
-        await logout();
         commit('logout');
+        await logout();
     }
 }
 
@@ -40,7 +40,7 @@ const mutations = {
         state.permission = payload.permission;
     },
     logout (state) {
-        state.name = '';
+        state.name = '1';
         state.username = '';
         state.permission = '';
         localStorage.clear();

@@ -7,8 +7,8 @@
                 <div class="info">
                     <div>姓名: {{name}}</div>
                     <div>学号: {{username}}</div>
-                    <div>权限: {{permission}}</div>
-                    <div @click="handleLogout">注销</div>
+                    <div>权限: {{permission.join(', ')}}</div>
+                    <div class="logout" @click="handleLogout">注销</div>
                 </div>
             </div>
         </div>
@@ -65,5 +65,9 @@ export default {
 .profile img:hover+.info {
     display: block;
     transform: scaleY(1);
+}
+.info .logout {
+    cursor: pointer;
+    color: #409eff;
 }
 </style>

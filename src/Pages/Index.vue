@@ -5,10 +5,11 @@
         <div class="homework-picture"><img v-if="homework.picture" :src="homework.picture" width="150px"/></div>
         <div>
           <div class="homework-title">{{homework.title}}</div>
+          <div class="homework-id">编号：{{homework.id}}</div>
           <div class="homework-deadline">截止日期：{{formatTime(homework.deadline)}}</div>
           <div class="homework-content">{{homework.content}}</div>
           <Button @click="handleClick(homework.id)">去交作业</Button>
-          <el-button @click="handleDelete(homework)" v-if="$store.state.account.permission=='admin'" type="danger" icon="el-icon-delete" size="mini" circle></el-button>
+          <el-button @click="handleDelete(homework)" v-if="hasPermission($store.state.account.permission, 'admin')" type="danger" icon="el-icon-delete" size="mini" circle></el-button>
         </div>
       </div>
     </div>
@@ -19,6 +20,7 @@ import Table from "../Components/Table.vue";
 import Menu from '../Components/Menu.vue';
 import Button from '../Components/Button.vue';
 import {getHomeworks, deleteHomeworkById} from '../api/homework.js';
+import {hasPermission} from '../util/index.js';
 export default {
   components: {
     Table,
@@ -41,8 +43,11 @@ export default {
       let month = date.getMonth()+1;
       let ddate = date.getDate();
       let hour = date.getHours();
+      hour = hour<10?'0'+hour:hour;
       let minute = date.getMinutes();
+      minute = minute<10?'0'+minute:minute;
       let second = date.getSeconds();
+      second = second<10?'0'+second:second;
       return year+'-'+month+'-'+ddate+' '+hour+':'+minute+':'+second;
     },
     handleClick(id) {
@@ -53,7 +58,9 @@ export default {
       if(!this.homeworks[index]) return;
       await deleteHomeworkById(homework.id);
       this.homeworks.splice(index, 1);
-    }
+      this.$message.success('删除成功');
+    },
+    hasPermission: hasPermission
   }
 };
 </script>
@@ -76,6 +83,10 @@ export default {
 .homework-title {
   font-size: 24px;
   margin-bottom: 10px;
+}
+.homework-id {
+  color: #666666;
+  font-size: 12px;
 }
 .homework-deadline {
   margin-bottom: 20px;

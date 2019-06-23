@@ -4,7 +4,16 @@
         <div class="homework-deadline">截止日期：{{formatTime(homework.deadline)}}</div>
         <Table :heads="heads" :data="homework.files">
             <template #option="scope">
-                <a class="option" @click="handleClick(scope.row.id)">提交</a>
+                <el-upload 
+                    :action="baseURL+ '/upload'"
+                    :headers="headers"
+                    :with-credentials="true"
+                    :data="{...scope.row, id: homework.id, fileID: scope.row.id}"
+                    :file-list="files"
+                    :on-success="handleSuccess">
+                    <el-button size="small" type="primary">点击上传</el-button>
+                    <div slot="tip" class="el-upload__tip"></div>
+                </el-upload>
             </template>
         </Table>
     </div>
@@ -12,6 +21,8 @@
 <script>
 import Table from '../Components/Table.vue';
 import Button from '../Components/Button.vue';
+import {getHomeworkById} from '../api/homework.js';
+import config from '../../config.js';
 export default {
     components: {
         Table,
@@ -22,49 +33,41 @@ export default {
     },
     data() {
         return {
-            homework: {
-                id: "1001",
-                title: "编译原理第一次作业",
-                class: "编译原理",
-                date: new Date(),
-                deadline: new Date(),
-                picture: 'https://cn.vuejs.org/images/logo.png',
-                content: '',
-                files: [
-                    {
-                        id: "1",
-                        name: "实验报告",
-                        status: "未提交"
-                    },
-                    {
-                        id: "2",
-                        name: "实验源代码",
-                        status: "未提交"
-                    }
-                ]
+            homework: {},
+            heads: [{name: "文件名称", prop: "name"}, {name: "状态", prop: "status"}, {name: "操作", prop: "option"}],
+            files: [],
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('hw')
             },
-            heads: [{name: "文件名称", prop: "name"}, {name: "状态", prop: "status"}, {name: "操作", prop: "option"}]
+            baseURL: config.baseURL
         }
     },
+    async created() {
+        this.getData();
+    },
     methods: {
+        async getData() {
+            let response = await getHomeworkById(this.id);
+            this.homework = response.data.data.homework;
+        },
         formatTime(date) {
+            date = new Date(date);  
             let year = date.getFullYear();
             let month = date.getMonth()+1;
             let ddate = date.getDate();
             let hour = date.getHours();
+            hour = hour<10?'0'+hour:hour;
             let minute = date.getMinutes();
+            minute = minute<10?'0'+minute:minute;
             let second = date.getSeconds();
+            second = second<10?'0'+second:second;
             return year+'-'+month+'-'+ddate+' '+hour+':'+minute+':'+second;
         },
-        handleClick(id) {
-            console.log(id);
-            let input = document.createElement("input");
-            input.type = "file";
-            input.click();
-            input.onchange = function() {
-                console.log(input.files);
-                alert("上传成功："+input.files[0].name);
-            }
+        handleSuccess(response, file, fileList) {
+            console.log(fileList);
+            file.name = response.data.name;
+            this.getData();
+            // this.files.push(file);
         }
     }
 }
